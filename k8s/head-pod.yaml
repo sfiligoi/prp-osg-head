@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: osg-head-prp-sdsc
+  labels: 
+    k8s-app: osg-head-prp
+spec:
+  template:
+    metadata: 
+      labels:
+        k8s-app: osg-head-prp
+    spec:
+      hostNetwork: true
+      nodeSelector: 
+        kubernetes.io/hostname: xcache-11.t2.ucsd.edu
+      containers:
+      - name: osg-head-prp
+        image: sfiligoi/prp-osg-head
+        imagePullPolicy: Always
+        #command: ["sh", "-c", "sleep infinity"]
+        volumeMounts:
+        - name: hostcert
+          mountPath: /etc/grid-security/hostcert.pem
+        - name: hostkey
+          mountPath: /etc/grid-security/hostkey.pem
+        - name: condordata
+          mountPath: /var/lib/condor
+      volumes:
+      - name : hostcert
+        hostPath:
+           path: /etc/grid-security/hostcert.pem
+           type: File
+      - name : hostkey
+        hostPath:
+           path: /etc/grid-security/hostkey.pem
+           type: File
+      - name: condordata
+        hostPath:
+          path: /var/run/condor-prp
+          type: Directory
+
