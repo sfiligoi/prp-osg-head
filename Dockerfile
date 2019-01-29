@@ -9,6 +9,6 @@ RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-
 
 RUN yum clean all
 
-ADD prp_condor_start.sh /usr/sbin/prp_condor_start.sh
+ADD 99_daemons.config /etc/condor/config.d/99_daemons.config
 
 CMD ["/usr/sbin/prp_condor_start.sh"]
