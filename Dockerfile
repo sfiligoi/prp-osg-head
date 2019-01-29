@@ -5,10 +5,15 @@ RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-
                    yum-plugin-priorities && \
     yum -y install  \
                    condor \
-                   redhat-lsb-core
+                   redhat-lsb-core && \
+    yum -y install supervisor
+
 
 RUN yum clean all
 
 ADD 99_daemons.config /etc/condor/config.d/99_daemons.config
 
-CMD ["/usr/sbin/prp_condor_start.sh"]
+RUN mkdir -p /var/log/supervisor
+ADD supervisord.conf /etc/supervisord.conf
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
