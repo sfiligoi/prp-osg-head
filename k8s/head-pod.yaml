@@ -25,6 +25,10 @@ spec:
           mountPath: /etc/grid-security/hostkey.pem
         - name: condordata
           mountPath: /var/lib/condor
+        - name: configpasswd
+          mountPath: /var/lock/condor/pool_password
+          subPath: pool_password
+          readOnly: true
       volumes:
       - name : hostcert
         hostPath:
@@ -38,4 +42,11 @@ spec:
         hostPath:
           path: /var/run/condor-prp
           type: Directory
+      - name: configpasswd
+        secret:
+          secretName: osg-head-prp-sdsc-config
+          items:
+             - key: pool_password
+               path: pool_password
+          defaultMode: 256
 
