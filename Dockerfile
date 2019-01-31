@@ -17,10 +17,10 @@ RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-
 
 RUN yum clean all
 
-ADD 98_security.config /etc/condor/config.d/98_security.config
-ADD 99_daemons.config /etc/condor/config.d/99_daemons.config
+ADD condor.d/98_security.config /etc/condor/config.d/98_security.config
+ADD condor.d/99_daemons.config /etc/condor/config.d/99_daemons.config
 
-ADD 20-osg-condor.ini /etc/osg/config.d/20-condor.ini
+ADD osg.d/20-condor.ini /etc/osg/config.d/20-condor.ini
 
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisord.conf
