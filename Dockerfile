@@ -22,8 +22,11 @@ ADD condor.d/99_daemons.config /etc/condor/config.d/99_daemons.config
 
 ADD osg.d/20-condor.ini /etc/osg/config.d/20-condor.ini
 
+ADD cron.d/fetch-crl.cron /etc/cron.d/fetch-crl.cron
+
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisord.conf
+ADD supervisord.d/condor.conf /etc/supervisord.d/condor.conf
 
 ADD dummy_pod_init.sh /usr/bin/pod_init.sh
 ADD supervisord_startup.sh /usr/bin/supervisord_startup.sh
