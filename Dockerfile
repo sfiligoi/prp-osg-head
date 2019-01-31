@@ -25,4 +25,7 @@ ADD 20-osg-condor.ini /etc/osg/congif.d/20-condor.ini
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisord.conf
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+ADD dummy_pod_init.sh /usr/bin/pod_init.sh
+ADD supervisord_startup.sh /usr/bin/supervisord_startup.sh
+
+CMD ["/usr/bin/supervisord_startup.sh"]
