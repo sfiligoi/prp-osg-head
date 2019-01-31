@@ -27,6 +27,7 @@ ADD cron.d/fetch-crl.cron /etc/cron.d/fetch-crl.cron
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisord.conf
 ADD supervisord.d/condor.conf /etc/supervisord.d/condor.conf
+ADD supervisord.d/condor-ce.conf /etc/supervisord.d/condor-ce.conf
 
 ADD dummy_pod_init.sh /usr/bin/pod_init.sh
 ADD supervisord_startup.sh /usr/bin/supervisord_startup.sh
