@@ -17,12 +17,12 @@ RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-
 
 RUN yum clean all
 
-ADD ../condor.d/99_daemons.config /etc/condor/config.d/99_daemons.config
+ADD condor.d/99_daemons.config /etc/condor/config.d/99_daemons.config
 
-ADD ../cron.d/fetch-crl.cron /etc/cron.d/fetch-crl.cron
+ADD cron.d/fetch-crl.cron /etc/cron.d/fetch-crl.cron
 
 RUN mkdir -p /var/log/supervisor
-ADD ../supervisord.conf /etc/supervisord.conf
-ADD ../supervisord.d/condor.conf /etc/supervisord.d/condor.conf
+ADD supervisord.conf /etc/supervisord.conf
+ADD supervisord.d/condor.conf /etc/supervisord.d/condor.conf
 
 CMD ["/usr/bin/supervisord" ,"-c" ,"/etc/supervisord.conf"]
