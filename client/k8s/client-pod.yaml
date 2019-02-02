@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: osg-head-prp-client
+  labels: 
+    k8s-app: osg-head-prp-client
+spec:
+  template:
+    metadata: 
+      labels:
+        k8s-app: osg-head-prp-client
+    spec:
+      containers:
+      - name: osg-head-prp-client
+        image: sfiligoi/prp-osg-head:client
+        imagePullPolicy: Always
+        #command: ["sh", "-c", "sleep infinity"]
+
