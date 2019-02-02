@@ -41,6 +41,9 @@ spec:
           mountPath: /etc/osg/config.d/40-siteinfo.ini
           subPath: 40-siteinfo.ini
           readOnly: true
+        - name: configogridmap
+          mountPath: /etc/grid-security/grid-mapfile
+          subPath: grid-mapfile
       volumes:
       - name : hostcert
         hostPath:
@@ -81,5 +84,12 @@ spec:
           items:
              - key: 40-osg-siteinfo.ini
                path: 40-siteinfo.ini
+          defaultMode: 292
+      - name: configgridmap
+        secret:
+          secretName: osg-head-prp-sdsc-config
+          items:
+             - key: grid-mapfile
+               path: grid-mapfile
           defaultMode: 292
 
