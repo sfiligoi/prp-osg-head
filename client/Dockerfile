@@ -9,7 +9,7 @@ RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-
     yum -y install  \
                    osg-ca-certs \
                    cilogon-openid-ca-cert && \
-    yum -y install  \
+    yum -y install  osg-wn-client \
                    condor \
                    redhat-lsb-core && \
     yum -y install supervisor
@@ -17,6 +17,7 @@ RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-
 
 RUN yum clean all
 
+ADD condor.d/91_gsi_relax.config /etc/condor/condor.d/91_gsi_relax.config
 ADD condor.d/99_daemons.config /etc/condor/config.d/99_daemons.config
 
 ADD cron.d/fetch-crl.cron /etc/cron.d/fetch-crl.cron
