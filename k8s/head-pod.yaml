@@ -25,6 +25,8 @@ spec:
           mountPath: /etc/grid-security/hostkey.pem
         - name: condordata
           mountPath: /var/lib/condor
+        - name: homedata
+          mountPath: /home
         - name: configpasswd
           mountPath: /var/lock/condor/pool_password
           subPath: pool_password
@@ -41,7 +43,7 @@ spec:
           mountPath: /etc/osg/config.d/40-siteinfo.ini
           subPath: 40-siteinfo.ini
           readOnly: true
-        - name: configogridmap
+        - name: configgridmap
           mountPath: /etc/grid-security/grid-mapfile
           subPath: grid-mapfile
       volumes:
@@ -55,7 +57,11 @@ spec:
            type: File
       - name: condordata
         hostPath:
-          path: /var/run/condor-prp
+          path: /var/run/condor-prp/condor_spool
+          type: Directory
+      - name: homedata
+        hostPath:
+          path: /var/run/condor-prp/users_home
           type: Directory
       - name: configpasswd
         secret:
