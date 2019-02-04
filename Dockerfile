@@ -32,4 +32,7 @@ ADD supervisord.d/condor-ce.conf /etc/supervisord.d/condor-ce.conf
 ADD dummy_pod_init.sh /usr/bin/pod_init.sh
 ADD supervisord_startup.sh /usr/bin/supervisord_startup.sh
 
+# enables gratia
+RUN touch /var/lock/subsys/gratia-probes-cron
+
 CMD ["/usr/bin/supervisord_startup.sh"]
