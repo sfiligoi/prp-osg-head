@@ -6,5 +6,6 @@ configmap:
           --from-file=pool_password \
           --from-file=pod_init.sh \
           --from-file=30-osg-gip.ini --from-file=40-osg-siteinfo.ini \
-          --from-file=grid-mapfile
+          --from-file=grid-mapfile \
+          --from-file=50_condor_host.config
 

@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: osg-head-prp-sdsc
+  namespace: osg
   labels: 
     k8s-app: osg-head-prp
 spec:
@@ -15,7 +16,7 @@ spec:
         kubernetes.io/hostname: xcache-11.t2.ucsd.edu
       containers:
       - name: osg-head-prp
-        image: sfiligoi/prp-osg-head
+        image: sfiligoi/prp-osg-head:pool
         imagePullPolicy: Always
         #command: ["sh", "-c", "sleep infinity"]
         volumeMounts:
