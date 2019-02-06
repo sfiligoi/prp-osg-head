@@ -32,6 +32,10 @@ spec:
           mountPath: /var/lock/condor/pool_password
           subPath: pool_password
           readOnly: true
+        - name: configcondorhost
+          mountPath: /etc/condor/config.d/50_condor_host.config
+          subPath: 50_condor_host.config
+          readOnly: true
         - name: configinit
           mountPath: /usr/bin/pod_init.sh
           subPath: pod_init.sh
@@ -78,6 +82,13 @@ spec:
              - key: pod_init.sh
                path: pod_init.sh
           defaultMode: 365
+      - name: configcondorhost
+        secret:
+          secretName: osg-head-prp-sdsc-config
+          items:
+             - key: 50_condor_host.config
+               path: 50_condor_host.config
+          defaultMode: 292
       - name: configosg30
         secret:
           secretName: osg-head-prp-sdsc-config
