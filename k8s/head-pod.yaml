@@ -57,11 +57,11 @@ spec:
            type: File
       - name: condordata
         hostPath:
-          path: /var/run/condor-prp/condor_spool
+          path: /var/run/condor-ce-prp/condor_spool
           type: Directory
       - name: homedata
         hostPath:
-          path: /var/run/condor-prp/users_home
+          path: /var/run/condor-ce-prp/users_home
           type: Directory
       - name: configpasswd
         secret:
