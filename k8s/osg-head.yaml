@@ -16,7 +16,7 @@ spec:
         kubernetes.io/hostname: xcache-11.t2.ucsd.edu
       containers:
       - name: osg-head-prp
-        image: sfiligoi/prp-osg-head:pool
+        image: sfiligoi/prp-osg-head
         imagePullPolicy: Always
         #command: ["sh", "-c", "sleep infinity"]
         volumeMounts:
