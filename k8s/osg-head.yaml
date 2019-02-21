@@ -36,14 +36,15 @@ spec:
           mountPath: /usr/bin/pod_init.sh
           subPath: pod_init.sh
           readOnly: true
+        - name: configosg10
+          mountPath: /etc/osg/config.d/01-squid.ini
+          subPath: 01-squid.ini 
         - name: configosg30
           mountPath: /etc/osg/config.d/30-gip.ini
           subPath: 30-gip.ini
-          readOnly: true
         - name: configosg40
           mountPath: /etc/osg/config.d/40-siteinfo.ini
           subPath: 40-siteinfo.ini
-          readOnly: true
         - name: configgridmap
           mountPath: /etc/grid-security/grid-mapfile
           subPath: grid-mapfile
@@ -78,6 +79,13 @@ spec:
              - key: pod_init.sh
                path: pod_init.sh
           defaultMode: 365
+      - name: configosg10
+        secret:
+          secretName: osg-head-prp-sdsc-config
+          items:
+             - key: 01-osg-squid.ini
+               path: 01-squid.ini
+          defaultMode: 292
       - name: configosg30
         secret:
           secretName: osg-head-prp-sdsc-config
