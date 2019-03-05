@@ -26,6 +26,8 @@ spec:
           mountPath: /etc/grid-security/hostkey.pem
         - name: condordata
           mountPath: /var/lib/condor
+        - name: condorcedata
+          mountPath: /var/lib/condor-ce
         - name: homedata
           mountPath: /home
         - name: configpasswd
@@ -58,13 +60,14 @@ spec:
            path: /etc/grid-security/hostkey.pem
            type: File
       - name: condordata
-        hostPath:
-          path: /var/run/condor-ce-prp/condor_spool
-          type: Directory
+        persistentVolumeClaim:
+          claimName: pvc-xcache11-t2-ucsd-edu-persistent-2
+      - name: condorcedata
+        persistentVolumeClaim:
+          claimName: pvc-xcache11-t2-ucsd-edu-persistent-3
       - name: homedata
-        hostPath:
-          path: /var/run/condor-ce-prp/users_home
-          type: Directory
+        persistentVolumeClaim:
+          claimName: pvc-xcache11-t2-ucsd-edu-persistent-4
       - name: configpasswd
         secret:
           secretName: osg-head-prp-sdsc-config
