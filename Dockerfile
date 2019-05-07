@@ -1,5 +1,7 @@
 FROM centos:centos7
 
+RUN yum -y update
+
 RUN groupadd -g 2000 condor && useradd -u 2000 -g 2000 -s /sbin/nologin condor
 
 RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-latest.rpm && \
@@ -14,6 +16,7 @@ RUN yum -y install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-
     yum -y install osg-ce-condor && \
     yum -y install supervisor
 
+RUN yum -y update
 
 RUN yum clean all
 
