@@ -20,6 +20,7 @@ RUN yum -y update
 
 RUN yum clean all
 
+ADD condor.d/11_schedd_tune.config  /etc/condor/config.d/11_schedd_tune.config 
 ADD condor.d/98_security.config /etc/condor/config.d/98_security.config
 ADD condor.d/99_daemons.config /etc/condor/config.d/99_daemons.config
 
