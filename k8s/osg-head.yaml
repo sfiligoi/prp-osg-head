@@ -35,8 +35,8 @@ spec:
           subPath: pool_password
           readOnly: true
         - name: configinit
-          mountPath: /usr/bin/pod_init.sh
-          subPath: pod_init.sh
+          mountPath: /etc/osg/image-config.d/80_pod_init.sh
+          subPath: 80_pod_init.sh
           readOnly: true
         - name: configosg10
           mountPath: /etc/osg/config.d/01-squid.ini
