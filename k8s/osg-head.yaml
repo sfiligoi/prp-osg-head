@@ -79,8 +79,8 @@ spec:
         secret:
           secretName: osg-head-prp-sdsc-config
           items:
-             - key: pod_init.sh
-               path: pod_init.sh
+             - key: 80_pod_init.sh
+               path: 80_pod_init.sh
           defaultMode: 365
       - name: configosg10
         secret:
