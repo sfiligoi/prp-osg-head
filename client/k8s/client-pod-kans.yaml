@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: osg-head-prp-client-kans
+  namespace: osg
+  labels: 
+    k8s-app: osg-head-prp-client-kans
+spec:
+  selector:
+    matchLabels:
+      k8s-app: osg-head-prp-client-kans
+  template:
+    metadata: 
+      labels:
+        k8s-app: osg-head-prp-client-kans
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/hostname: osg.kans.nrp.internet2.edu
+      containers:
+      - name: osg-head-prp-client
+        image: sfiligoi/prp-osg-head:client
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 26Gi
+            cpu: 16
+          requests:
+            memory: 2Gi
+            cpu: 0.1
+        #command: ["sh", "-c", "sleep infinity"]
+        volumeMounts:
+        - mountPath: /export/data
+          name: export
+        - mountPath: /export/shm
+          name: mem
+      volumes:
+      - name: export
+        hostPath:
+          path: /export/data
+          type: Directory
+      - name: mem
+        hostPath:
+          path: /dev/shm
+          type: Directory
+
