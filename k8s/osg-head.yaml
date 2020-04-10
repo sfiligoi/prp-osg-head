@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: osg-head-prp-sdsc
@@ -6,6 +6,10 @@ metadata:
   labels: 
     k8s-app: osg-head-prp
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: osg-head-prp
   template:
     metadata: 
       labels:
@@ -19,6 +23,13 @@ spec:
         image: sfiligoi/prp-osg-head
         imagePullPolicy: Always
         #command: ["sh", "-c", "sleep infinity"]
+        resources:
+           limits:
+             memory: 16Gi
+             cpu: 4
+           requests:
+             memory: 4Gi
+             cpu: 1
         volumeMounts:
         - name: hostcert
           mountPath: /etc/grid-security/hostcert.pem
