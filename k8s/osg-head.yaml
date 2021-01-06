@@ -16,6 +16,10 @@ spec:
         k8s-app: osg-head-prp
     spec:
       hostNetwork: true
+      tolerations:
+      - effect: NoSchedule
+        key: nautilus.io/stashcache
+        operator: Exists
       nodeSelector: 
         kubernetes.io/hostname: xcache-11.t2.ucsd.edu
       containers:
@@ -35,12 +39,8 @@ spec:
           mountPath: /etc/grid-security/hostcert.pem
         - name: hostkey
           mountPath: /etc/grid-security/hostkey.pem
-        - name: condordata
-          mountPath: /var/lib/condor
-        - name: condorcedata
-          mountPath: /var/lib/condor-ce
-        - name: homedata
-          mountPath: /home
+        - name: ceph
+          mountPath: /mnt/ceph
         - name: configpasswd
           mountPath: /var/lock/condor/pool_password
           subPath: pool_password
@@ -70,15 +70,9 @@ spec:
         hostPath:
            path: /etc/grid-security/hostkey.pem
            type: File
-      - name: condordata
+      - name: ceph
         persistentVolumeClaim:
-          claimName: pvc-xcache11-t2-ucsd-edu-persistent-2
-      - name: condorcedata
-        persistentVolumeClaim:
-          claimName: pvc-xcache11-t2-ucsd-edu-persistent-3
-      - name: homedata
-        persistentVolumeClaim:
-          claimName: pvc-xcache11-t2-ucsd-edu-persistent-4
+          claimName: osg-head-storage
       - name: configpasswd
         secret:
           secretName: osg-head-prp-sdsc-config
